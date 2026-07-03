@@ -391,7 +391,7 @@
   <div class="container">
     <div class="eyebrow reveal">El corazón: IA + Telegram</div>
     <h2 class="reveal">Sin descargar nada. Todo pasa en el chat que ya usan.</h2>
-    <p class="lead reveal">La población más vulnerable no instala apps. Por eso MediVia vive dentro de Telegram: el adulto mayor recibe recordatorios, responde con un botón, una foto o una nota de voz, y la inteligencia artificial hace el trabajo silencioso de entender y avisar. Al salir de una cita, una sola foto de la orden es suficiente para crear el siguiente trámite, sin formularios. Reproduzca un caso real:</p>
+    <p class="lead reveal">La población más vulnerable no instala apps. Por eso MediVia vive dentro de Telegram: el adulto mayor recibe recordatorios, responde con un botón, una foto o una nota de voz, y la inteligencia artificial hace el trabajo silencioso de entender y avisar. Al salir de una cita, la foto de la orden llega a quien está a cargo, que elige crear el trámite ahí mismo con IA o completarlo a mano en la app. Reproduzca un caso real:</p>
 
     <div class="demo-tabs reveal">
       <button class="demo-tab active" data-scn="orden">📸 Foto de la orden → cita creada</button>
@@ -435,7 +435,7 @@
     <div class="two" style="margin-top:30px;">
       <div class="reveal">
         <span class="panel-tag">Ruta del acceso a la salud</span>
-        <p class="muted">Desde la foto de la orden que acaba de crear el trámite, cada cita y cada medicamento recorre una fila de etapas ante la EPS. MediVia sabe en cuál está, cuánto lleva ahí, y cuándo el silencio ya es demasiado. Cada trámite que no se atasca es un ciudadano atendido. Haga clic en una etapa:</p>
+        <p class="muted">Desde el trámite que el cuidador acaba de crear —por IA en el chat o a mano en la app—, cada cita y cada medicamento recorre una fila de etapas ante la EPS. MediVia sabe en cuál está, cuánto lleva ahí, y cuándo el silencio ya es demasiado. Cada trámite que no se atasca es un ciudadano atendido. Haga clic en una etapa:</p>
         <ul class="feat-list">
           <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Revisa el estado real todos los días, sin que nadie tenga que abrir la app.</li>
           <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Si lleva demasiado tiempo detenido, insiste hasta que se mueva.</li>
@@ -572,18 +572,18 @@
   var SCENARIOS = {
     orden: {
       steps: [
-        { bubbles:[{cls:'bot', who:'MediVia Bot', html:'🗓️ ¿Cómo te fue en la cita con Fisiatría?', btns:[{t:'✓ Ya salí, aquí está la orden'}]}],
+        { bubbles:[{cls:'bot', who:'MediVia Bot', html:'🗓️ Rosa, ¿cómo te fue en la cita con Fisiatría?', btns:[{t:'✓ Sí asistí'}]}],
           beat:{ b:'Pregunta apenas sale de la cita', s:'El chat no espera a que el paciente recuerde después: pregunta en el momento.' } },
         { bubbles:[{cls:'user', photo:true}],
-          beat:{ b:'Una foto, nada más', s:'El paciente o su cuidador solo envían la foto de la orden que le acaban de entregar.' } },
-        { sys:'La IA lee la orden dos veces en paralelo y compara resultados', ai:true,
-          beat:{ b:'Doble lectura por IA', s:'Extrae especialidad, EPS, médico remitente y fecha límite. Si las dos lecturas no coinciden, corre una tercera y decide por mayoría.' } },
-        { sys:'Se cruza con la EPS y el historial que MediVia ya tiene del paciente', ai:true,
-          beat:{ b:'Cruce con su historial', s:'Si algo no cuadra con sus datos ya registrados, lo marca para revisión en vez de adivinarlo.' } },
-        { bubbles:[{cls:'bot', who:'MediVia Bot', html:'✅ Listo. Se creó tu cita de control con <b>Fisiatría</b>, vence el 30 de agosto. Ya está en tu lista de trámites.'}],
-          beat:{ b:'Un toque, y el trámite queda creado', s:'Sin formularios. La cita entra directo al motor de seguimiento que vigila que no se atasque.' } }
+          beat:{ b:'Rosa envía la foto de la orden', s:'Sin guardarla ni leerla todavía: MediVia solo la recibe para reenviarla.' } },
+        { bubbles:[{cls:'bot', who:'MediVia Bot → María (hija)', care:true, html:'📎 Rosa salió de su cita. Te reenvío la orden.'},{cls:'bot', photo:true, btns:[{t:'🤖 Crear con IA'},{t:'📱 Abrir la app'}]}],
+          beat:{ b:'La orden llega a quien decide', s:'La hija recibe la foto y elige cómo seguir: que la IA la lea ahí mismo, en el chat, o completarla a mano en la app.' } },
+        { sys:'María elige "Crear con IA": el modelo lee la orden dos veces en paralelo y compara resultados', ai:true,
+          beat:{ b:'Si elige IA, lectura doble automática', s:'Extrae especialidad, EPS, médico remitente y fecha límite. Si las dos lecturas no coinciden, corre una tercera y decide por mayoría.' } },
+        { bubbles:[{cls:'bot', who:'MediVia Bot → María (hija)', care:true, html:'✅ Listo. Se creó la cita de control de Rosa con <b>Fisiatría</b>, vence el 30 de agosto. Ya está en la lista de trámites.'}],
+          beat:{ b:'El trámite queda creado, sin salir del chat', s:'Y si María hubiera preferido la app, la misma foto la espera ahí para completarla a mano en el wizard de siempre.' } }
       ],
-      outcome:'De la consulta al sistema en menos de un minuto, sin que nadie escriba un solo dato.'
+      outcome:'El cuidador decide cómo, pero nunca tiene que perseguir el papel.'
     },
     adh: {
       steps: [
