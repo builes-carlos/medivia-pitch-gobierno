@@ -715,17 +715,19 @@
   loadScn('orden');
 
   /* =================== stage machine (trámites) =================== */
+  var P1 = { label:'P1 · Desatasca el acceso', bg:'var(--warn-soft)', color:'var(--warn)' };
+  var P2 = { label:'P2 · Previene lapsus de cuidado', bg:'var(--accent-soft)', color:'var(--accent)' };
   var STAGES = [
-    { t:'Registrada, pero nunca se pidió la autorización', d:'La cita o el medicamento existe, pero el trámite ante la EPS ni siquiera empezó. MediVia lo marca desde el primer día: “falta pedir esta autorización”.' },
-    { t:'Autorización pedida, sin respuesta', d:'Se radicó la solicitud y la EPS no responde. A partir de 7 días MediVia lo muestra como atascado y cuenta los días de silencio.' },
-    { t:'PQR abierta, sin respuesta', d:'Se escaló con una PQR y sigue sin moverse. MediVia insiste: si a los 14 días no hay respuesta, escala a un mensaje directo por Telegram.' },
-    { t:'Autorizado, pero sin agendar o sin reclamar', d:'La EPS ya autorizó, pero el paso quedó a medias: falta ponerle fecha a la cita o reclamar el medicamento. MediVia no deja que se pierda ahí.' },
-    { t:'¿El paciente asistió?', d:'Tras la cita, MediVia pregunta si asistió. Si no, la reabre como “pendiente de agendar” y avisa al cuidador. El ciclo se cierra de verdad.' }
+    { t:'Registrada, pero nunca se pidió la autorización', d:'La cita o el medicamento existe, pero el trámite ante la EPS ni siquiera empezó. MediVia lo marca desde el primer día: “falta pedir esta autorización”.', w:P1 },
+    { t:'Autorización pedida, sin respuesta', d:'Se radicó la solicitud y la EPS no responde. A partir de 7 días MediVia lo muestra como atascado y cuenta los días de silencio.', w:P1 },
+    { t:'PQR abierta, sin respuesta', d:'Se escaló con una PQR y sigue sin moverse. MediVia insiste: si a los 14 días no hay respuesta, escala a un mensaje directo por Telegram.', w:P1 },
+    { t:'Autorizado, pero sin agendar o sin reclamar', d:'La EPS ya autorizó, pero el paso quedó a medias: falta ponerle fecha a la cita o reclamar el medicamento. MediVia no deja que se pierda ahí.', w:P1 },
+    { t:'¿El paciente asistió?', d:'Tras la cita, MediVia pregunta si asistió. Si no, la reabre como “pendiente de agendar” y avisa al cuidador. El ciclo se cierra de verdad.', w:P2 }
   ];
   var machine = document.getElementById('stage-machine'), detail = document.getElementById('stage-detail');
   function renderStage(i){
     var s = STAGES[i];
-    detail.innerHTML = '<span class="badge-p">P1 · Desatasca el acceso</span><h4>'+s.t+'</h4><p>'+s.d+'</p>';
+    detail.innerHTML = '<span class="badge-p" style="background:'+s.w.bg+';color:'+s.w.color+'">'+s.w.label+'</span><h4>'+s.t+'</h4><p>'+s.d+'</p>';
     machine.querySelectorAll('.stage').forEach(function(el, idx){ el.classList.toggle('active', idx===i); el.classList.toggle('done', idx<i); });
   }
   machine.querySelectorAll('.stage').forEach(function(el){ el.addEventListener('click', function(){ renderStage(parseInt(el.getAttribute('data-i'),10)); }); });
