@@ -574,6 +574,8 @@
       steps: [
         { bubbles:[{cls:'bot', who:'MediVia Bot', html:'🗓️ Rosa, ¿cómo te fue en la cita con Fisiatría?', btns:[{t:'✓ Sí asistí'}]}],
           beat:{ b:'Pregunta apenas sale de la cita', s:'El chat no espera a que el paciente recuerde después: pregunta en el momento.' } },
+        { bubbles:[{cls:'user', html:'✓ Sí asistí'},{cls:'bot', who:'MediVia Bot', html:'📸 Qué bien. ¿Puedes mandarme una foto de la orden que te dieron?'}],
+          beat:{ b:'El bot le pide la foto a Rosa', s:'Solo después de confirmar que asistió, el bot pide la orden. Un paso a la vez, sin abrumarla.' } },
         { bubbles:[{cls:'user', photo:true}],
           beat:{ b:'Rosa envía la foto de la orden', s:'Sin guardarla ni leerla todavía: MediVia solo la recibe para reenviarla.' } },
         { bubbles:[{cls:'bot', who:'MediVia Bot → María (hija)', care:true, html:'📎 Rosa salió de su cita. Te reenvío la orden.'},{cls:'bot', photo:true, btns:[{t:'🤖 Crear con IA'},{t:'📱 Abrir la app'}]}],
