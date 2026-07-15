@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediVia · Documento de apoyo para gobierno regional · Perú</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f8fd;
+    --bg-soft: #eaf1fb;
+    --ink: #0a1224;
+    --ink-2: #2c3a57;
+    --ink-3: #4a5878;
+    --border: #cdd8ec;
+    --border-soft: #e3eaf6;
+    --accent: #1e50bc;
+    --accent-bright: #2563eb;
+    --accent-fill: #1e50bc;
+    --accent-soft: #ebf2fe;
+    --accent-ink: #10285e;
+    --ok: #047857;
+    --ok-soft: #ecfdf5;
+    --warn: #b45309;
+    --warn-soft: #fffbeb;
+    --danger: #b91c1c;
+    --danger-soft: #fef2f2;
+    --tg: #229ed9;
+    --shadow-1: 0 1px 2px rgba(10,18,36,0.04), 0 6px 16px rgba(10,18,36,0.06);
+    --shadow-2: 0 6px 12px rgba(10,18,36,0.06), 0 24px 48px rgba(10,18,36,0.10);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { max-width: 100%; overflow-x: hidden; }
+  body {
+    margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px; line-height: 1.65; color: var(--ink); background: var(--bg);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  h1,h2,h3,h4 { line-height: 1.16; color: var(--ink); margin: 0 0 0.4em; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); font-weight: 800; }
+  h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; margin-top: 0; }
+  h3 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; }
+  p { margin: 0 0 1em; }
+  a { color: var(--accent); text-decoration: none; }
+  em { font-style: normal; color: var(--accent-bright); }
+  .accent-under { position: relative; white-space: nowrap; }
+  .accent-under::after { content:""; position:absolute; left:-2px; right:-2px; bottom:4px; height:30%; background: linear-gradient(90deg, rgba(37,99,235,0.20), rgba(16,185,129,0.20)); border-radius:4px; z-index:-1; }
+
+  .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  section { padding: clamp(58px, 7vw, 96px) 0; border-top: 1px solid var(--border-soft); }
+  section.alt { background: var(--bg-alt); }
+  .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:0.8rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin:0 0 16px; }
+  .eyebrow::before { content:""; width:22px; height:2px; background:var(--accent); border-radius:2px; }
+  .lead { font-size: clamp(1.06rem, 1.5vw, 1.22rem); color: var(--ink-2); max-width: 68ch; }
+
+  nav.toc { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,0.88); backdrop-filter: saturate(160%) blur(10px); -webkit-backdrop-filter: saturate(160%) blur(10px); border-bottom: 1px solid var(--border-soft); }
+  nav.toc .row { display:flex; align-items:center; gap:22px; padding:13px 24px; max-width:1120px; margin:0 auto; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.12rem; letter-spacing:-0.02em; color:var(--ink); }
+  .brand .logo { width:30px; height:30px; border-radius:9px; background: linear-gradient(135deg, var(--accent-bright), #10b981); display:grid; place-items:center; color:#fff; font-weight:900; font-size:1rem; box-shadow:0 3px 8px rgba(37,99,235,0.35); }
+  nav.toc ul { list-style:none; padding:0; margin:0 0 0 auto; display:flex; gap:4px; flex-wrap:wrap; }
+  nav.toc ul a { color:var(--ink-3); font-size:0.9rem; font-weight:600; padding:7px 12px; border-radius:999px; transition:color .15s, background .15s; }
+  nav.toc ul a:hover, nav.toc ul a.active { color:var(--accent); background:var(--accent-soft); }
+  .nav-toggle { display:none; align-items:center; justify-content:center; width:38px; height:38px; margin-left:auto; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--ink); cursor:pointer; flex-shrink:0; padding:0; }
+  .nav-toggle:hover { border-color:var(--accent); color:var(--accent); }
+  @media (max-width: 980px) {
+    nav.toc ul.links {
+      display:none; position:absolute; top:100%; right:16px; left:auto;
+      flex-direction:column; gap:2px; background:var(--bg);
+      border:1px solid var(--border-soft); border-radius:12px; box-shadow:var(--shadow-2);
+      padding:8px; margin:8px 0 0;
+    }
+    nav.toc ul.links.open { display:flex; }
+    nav.toc ul.links li { width:100%; }
+    nav.toc ul.links a { display:block; padding:11px 16px; white-space:nowrap; border-radius:8px; }
+    .nav-toggle { display:inline-flex; }
+  }
+  @media (max-width: 420px) {
+    nav.toc .row { padding:13px 16px; gap:10px; }
+    .brand { font-size:0.98rem; }
+  }
+
+  /* cover */
+  .cover { padding: clamp(48px, 7vw, 92px) 0 clamp(36px, 5vw, 64px); position:relative; overflow:hidden; }
+  .cover::before { content:""; position:absolute; inset:-25% -10% auto -10%; height:640px; z-index:-1; background: radial-gradient(55% 60% at 18% 8%, rgba(37,99,235,0.10), transparent 70%), radial-gradient(50% 50% at 92% 0%, rgba(16,185,129,0.10), transparent 70%); }
+  .support-badge { display:inline-flex; flex-wrap:wrap; max-width:100%; align-items:center; gap:6px 10px; font-size:0.82rem; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); border:1px solid #cfe0fd; padding:7px 15px; border-radius:999px; margin-bottom:22px; }
+  .support-badge b { color:var(--accent); }
+  .cover h1 { max-width: 18ch; }
+  .cover .lead { margin-top:20px; }
+  .cta { margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; gap:9px; padding:13px 24px; border-radius:999px; font-weight:700; font-size:0.96rem; cursor:pointer; border:1px solid var(--border); color:var(--ink); background:var(--bg); transition:transform .12s, box-shadow .15s; }
+  .btn.primary { background:var(--accent-fill); color:#fff; border-color:var(--accent-fill); box-shadow:0 6px 18px rgba(30,80,188,0.32); }
+  .btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-1); }
+
+  .pillars-mini { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-soft); border:1px solid var(--border-soft); border-radius:var(--radius); overflow:hidden; margin-top:44px; box-shadow:var(--shadow-1); }
+  .pmini { background:var(--bg); padding:22px 22px; }
+  .pmini .ic { width:40px; height:40px; border-radius:11px; display:grid; place-items:center; margin-bottom:12px; }
+  .pmini b { display:block; font-size:1.02rem; color:var(--ink); margin-bottom:3px; }
+  .pmini span { font-size:0.9rem; color:var(--ink-3); }
+  @media (max-width: 820px) { .pillars-mini { grid-template-columns:1fr; } }
+
+  .ic-blue { background:var(--accent-soft); color:var(--accent); }
+  .ic-green { background:var(--ok-soft); color:var(--ok); }
+  .ic-warn { background:var(--warn-soft); color:var(--warn); }
+  .ic-red { background:var(--danger-soft); color:var(--danger); }
+
+  /* ---------- stat bands ---------- */
+  .band-head { display:flex; align-items:center; gap:12px; margin:44px 0 4px; flex-wrap:wrap; }
+  .band-head h3 { margin:0; font-size:1.15rem; }
+  .band-pill { display:inline-flex; align-items:center; gap:7px; font-size:0.72rem; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; padding:5px 12px; border-radius:999px; }
+  .band-pill.real { background:var(--accent-soft); color:var(--accent); }
+  .band-pill.proj { background:var(--warn-soft); color:var(--warn); border:1px dashed #e0c48a; }
+  .statband { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:18px; }
+  .statband.three { grid-template-columns:repeat(3,1fr); }
+  @media (max-width: 820px) { .statband, .statband.three { grid-template-columns:1fr 1fr; } }
+  @media (max-width: 460px) { .statband, .statband.three { grid-template-columns:1fr; } }
+  .stat-tile { background:var(--bg); border:1px solid var(--border-soft); border-radius:var(--radius); padding:22px 20px; box-shadow:var(--shadow-1); }
+  .stat-tile.proj { border-style:dashed; border-color:#e0c48a; background:linear-gradient(180deg,#fffdf8,#fff); }
+  .stat-tile .num { font-size:clamp(1.8rem,3.4vw,2.5rem); font-weight:900; letter-spacing:-0.03em; color:var(--accent); line-height:1; }
+  .stat-tile.proj .num { color:var(--warn); }
+  .stat-tile .lbl { font-size:0.9rem; color:var(--ink-2); margin-top:11px; font-weight:600; line-height:1.42; }
+  .stat-tile .src { display:block; font-size:0.71rem; color:var(--ink-3); margin-top:11px; font-weight:700; letter-spacing:0.02em; }
+  .band-foot { font-size:0.82rem; color:var(--ink-3); margin-top:14px; }
+  .band-foot b { color:var(--warn); }
+
+  /* ---------- why-now grid ---------- */
+  .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:34px; }
+  @media (max-width: 900px) { .grid-4 { grid-template-columns:1fr 1fr; } }
+  @media (max-width: 520px) { .grid-4 { grid-template-columns:1fr; } }
+
+  /* ---------- the ask ---------- */
+  .ask { display:grid; grid-template-columns:1.5fr 1fr; margin-top:44px; border:1px solid var(--border-soft); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-2); }
+  @media (max-width: 820px) { .ask { grid-template-columns:1fr; } }
+  .ask-main { padding:30px 32px; background:var(--bg); }
+  .ask-main h3 { margin:0 0 8px; font-size:1.35rem; }
+  .ask-main > p { color:var(--ink-3); margin:0 0 20px; font-size:0.98rem; }
+  .ask-split { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width: 520px) { .ask-split { grid-template-columns:1fr; } }
+  .ask-split b { display:flex; align-items:center; gap:7px; color:var(--ink); font-size:0.92rem; margin-bottom:5px; }
+  .ask-split b::before { content:""; width:8px; height:8px; border-radius:2px; }
+  .ask-split .muni b::before { background:var(--warn); }
+  .ask-split .med b::before { background:var(--ok); }
+  .ask-split span { display:block; color:var(--ink-3); font-size:0.88rem; line-height:1.45; }
+  .ask-cta { padding:30px 32px; background:linear-gradient(135deg,#12377f,#1746a8); color:#fff; display:flex; flex-direction:column; justify-content:center; gap:6px; }
+  .ask-cta .ask-step { font-size:0.74rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:#bcd0f5; }
+  .ask-cta p { color:rgba(255,255,255,0.92); margin:2px 0 18px; font-size:1.04rem; line-height:1.5; }
+  .ask-cta .btn { background:#fff; color:var(--accent-ink); border-color:#fff; align-self:flex-start; }
+
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media (max-width: 860px) { .grid-3 { grid-template-columns:1fr; } }
+  .card { background:var(--bg); border:1px solid var(--border-soft); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-1); }
+  .card .ic-lg { width:46px; height:46px; border-radius:12px; display:grid; place-items:center; margin-bottom:14px; }
+  .card h3 { margin:0 0 6px; }
+  .card p { color:var(--ink-3); font-size:0.96rem; margin:0; }
+
+  /* section intro two-col */
+  .two { display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:center; }
+  @media (max-width: 900px) { .two { grid-template-columns:1fr; gap:28px; } }
+
+  /* ---------- interactive: telegram chat player ---------- */
+  .demo-tabs { display:flex; flex-wrap:wrap; gap:8px; margin: 8px 0 22px; }
+  .demo-tab { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; background:var(--bg); border:1px solid var(--border); color:var(--ink-2); font-weight:700; font-size:0.9rem; cursor:pointer; transition:all .15s; }
+  .demo-tab:hover { border-color:var(--tg); color:var(--tg); }
+  .demo-tab.active { background:var(--tg); color:#fff; border-color:var(--tg); box-shadow:0 6px 16px rgba(34,158,217,0.3); }
+
+  .chat-wrap { display:grid; grid-template-columns: 340px 1fr; gap:34px; align-items:start; }
+  @media (max-width: 860px) { .chat-wrap { grid-template-columns:1fr; } }
+  .phone { width:340px; max-width:100%; margin:0 auto; background:#0a1224; border-radius:36px; padding:11px; box-shadow:var(--shadow-2); }
+  .tg-head { background: var(--tg); color:#fff; border-radius:26px 26px 0 0; padding:16px 16px 12px; display:flex; align-items:center; gap:11px; }
+  .tg-head .av { width:38px; height:38px; border-radius:50%; background:#fff; display:grid; place-items:center; color:var(--tg); font-weight:900; }
+  .tg-head .nm { font-weight:800; font-size:0.98rem; line-height:1.1; }
+  .tg-head .st { font-size:0.72rem; opacity:0.9; }
+  .tg-body { background:#dfeaf2; border-radius:0 0 26px 26px; padding:16px 13px; min-height:420px; display:flex; flex-direction:column; gap:10px; overflow:hidden; }
+  .bub { max-width:82%; padding:9px 13px; border-radius:16px; font-size:0.86rem; line-height:1.4; box-shadow:0 1px 1px rgba(0,0,0,0.08); opacity:0; transform:translateY(10px); transition:opacity .35s ease, transform .35s ease; }
+  .bub.show { opacity:1; transform:none; }
+  .bub.bot { background:#fff; color:var(--ink); align-self:flex-start; border-bottom-left-radius:5px; }
+  .bub.user { background:#c6f6c9; color:#0f3d16; align-self:flex-end; border-bottom-right-radius:5px; }
+  .bub .who { font-size:0.68rem; font-weight:800; color:var(--tg); margin-bottom:2px; }
+  .bub .who.care { color:var(--warn); }
+  .bub-btns { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+  .bub-btn { font-size:0.72rem; font-weight:700; padding:5px 10px; border-radius:8px; background:var(--accent-soft); color:var(--accent); }
+  .bub-btn.g { background:var(--ok-soft); color:var(--ok); }
+  .sys { align-self:center; text-align:center; font-size:0.74rem; font-weight:700; color:var(--ink-3); background:rgba(255,255,255,0.7); padding:6px 12px; border-radius:999px; opacity:0; transform:translateY(10px); transition:opacity .35s, transform .35s; }
+  .sys.show { opacity:1; transform:none; }
+  .sys.ai { color:var(--accent); }
+  .voice { display:flex; align-items:center; gap:9px; }
+  .voice .play { width:26px; height:26px; border-radius:50%; background:var(--tg); color:#fff; display:grid; place-items:center; flex-shrink:0; }
+  .voice .wave { display:flex; align-items:center; gap:2px; height:20px; }
+  .voice .wave i { width:2.5px; background:var(--tg); border-radius:2px; display:block; }
+
+  .chat-side { }
+  .beat-list { list-style:none; padding:0; margin:0; display:grid; gap:9px; }
+  .beat { display:grid; grid-template-columns:26px 1fr; gap:12px; align-items:start; padding:12px 14px; border:1px solid var(--border-soft); border-left:4px solid var(--border); border-radius:0 12px 12px 0; background:var(--bg); opacity:0.55; transition:all .2s; }
+  .beat.active { opacity:1; border-left-color:var(--tg); background:#f4fbfe; box-shadow:var(--shadow-1); }
+  .beat .n { width:24px; height:24px; border-radius:999px; background:var(--bg-soft); color:var(--tg); display:grid; place-items:center; font-size:0.76rem; font-weight:900; }
+  .beat.active .n { background:var(--tg); color:#fff; }
+  .beat b { display:block; font-size:0.9rem; color:var(--ink); }
+  .beat span { font-size:0.82rem; color:var(--ink-3); }
+  .outcome { margin-top:16px; display:flex; align-items:center; gap:11px; padding:14px 16px; background:var(--ok-soft); border:1px solid #a7f3d0; border-radius:12px; color:#065f46; font-weight:700; font-size:0.92rem; }
+
+  /* stage machine */
+  .feat-visual { background:var(--bg); border:1px solid var(--border-soft); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-1); }
+  .machine { display:flex; gap:6px; flex-wrap:wrap; }
+  .stage { flex:1 1 0; min-width:120px; text-align:left; cursor:pointer; padding:12px; border-radius:12px; border:1px solid var(--border-soft); background:var(--bg); transition:all .15s; }
+  .stage .sn { font-size:0.66rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-3); }
+  .stage .st { font-size:0.84rem; font-weight:700; color:var(--ink); margin-top:3px; }
+  .stage.active { border-color:var(--accent); background:var(--accent-soft); box-shadow:var(--shadow-1); }
+  .stage.active .sn { color:var(--accent); }
+  .stage.done { opacity:0.6; }
+  .stage-detail { margin-top:18px; background:var(--bg-alt); border:1px solid var(--border-soft); border-left:4px solid var(--accent); border-radius:0 12px 12px 0; padding:16px 18px; }
+  .stage-detail .badge-p { display:inline-block; font-size:0.72rem; font-weight:800; padding:3px 9px; border-radius:999px; margin-bottom:8px; background:var(--warn-soft); color:var(--warn); }
+  .stage-detail h4 { margin:0 0 6px; font-size:1.02rem; }
+  .stage-detail p { margin:0; color:var(--ink-2); font-size:0.92rem; }
+  .feat-list { list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px; }
+  .feat-list li { display:grid; grid-template-columns:24px 1fr; gap:12px; align-items:start; font-size:0.97rem; color:var(--ink-2); }
+  .feat-list .ck { width:24px; height:24px; border-radius:999px; background:var(--ok-soft); color:var(--ok); display:grid; place-items:center; margin-top:1px; }
+  .panel-tag { display:inline-flex; align-items:center; gap:8px; font-size:0.76rem; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:999px; background:var(--accent-soft); color:var(--accent); margin-bottom:14px; }
+
+  /* ---------- interactive: benefits pillars ---------- */
+  .bpillars { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
+  @media (max-width: 900px) { .bpillars { grid-template-columns:1fr; } }
+  .bp { text-align:left; cursor:pointer; background:var(--bg); border:1px solid var(--border-soft); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-1); transition:all .18s; border-top:4px solid var(--border); }
+  .bp:hover { transform:translateY(-3px); box-shadow:var(--shadow-2); }
+  .bp.active { border-top-color:var(--accent); }
+  .bp.p1 { --c:#047857; } .bp.p2 { --c:#1e50bc; } .bp.p3 { --c:#b45309; }
+  .bp.active.p1 { border-top-color:#047857; } .bp.active.p2 { border-top-color:#1e50bc; } .bp.active.p3 { border-top-color:#b45309; }
+  .bp .ic-lg { width:48px; height:48px; border-radius:12px; display:grid; place-items:center; margin-bottom:14px; }
+  .bp h3 { margin:0 0 6px; }
+  .bp .tease { color:var(--ink-3); font-size:0.94rem; margin:0; }
+  .bp .more { font-size:0.82rem; font-weight:800; color:var(--accent); margin-top:12px; display:inline-flex; align-items:center; gap:5px; }
+  .bp-detail { margin-top:20px; background:var(--bg); border:1px solid var(--border-soft); border-radius:var(--radius); padding:26px 28px; box-shadow:var(--shadow-1); border-left:5px solid var(--accent); }
+  .bp-detail h4 { margin:0 0 14px; font-size:1.2rem; }
+  .bp-detail .items { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width: 700px) { .bp-detail .items { grid-template-columns:1fr; } }
+  .bp-detail .items li { list-style:none; display:grid; grid-template-columns:22px 1fr; gap:10px; align-items:start; font-size:0.95rem; color:var(--ink-2); }
+  .bp-detail .items .ck { width:22px; height:22px; border-radius:999px; background:var(--accent-soft); color:var(--accent); display:grid; place-items:center; margin-top:1px; }
+  .bp-detail ul { padding:0; margin:0; }
+
+  .flow { background:var(--bg); border:1px solid var(--border-soft); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow-1); }
+
+  /* piloto steps */
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:30px; counter-reset: s; }
+  @media (max-width: 820px) { .steps { grid-template-columns:1fr 1fr; } }
+  @media (max-width: 480px) { .steps { grid-template-columns:1fr; } }
+  .step { background:var(--bg); border:1px solid var(--border-soft); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-1); position:relative; }
+  .step .num { width:34px; height:34px; border-radius:10px; background:var(--accent-soft); color:var(--accent); font-weight:900; display:grid; place-items:center; margin-bottom:12px; }
+  .step b { display:block; margin-bottom:5px; }
+  .step span { font-size:0.9rem; color:var(--ink-3); }
+
+  .final { background: linear-gradient(135deg, #0f2f80, #1746a8 55%, #10774f); color:#fff; border-radius:24px; padding: clamp(36px,6vw,62px); text-align:center; box-shadow:var(--shadow-2); position:relative; overflow:hidden; }
+  .final::before { content:""; position:absolute; inset:0; background: radial-gradient(60% 100% at 80% 0%, rgba(255,255,255,0.12), transparent 60%); }
+  .final h2 { color:#fff; position:relative; }
+  .final p { color:rgba(255,255,255,0.86); max-width:58ch; margin:0 auto 24px; position:relative; font-size:1.08rem; }
+  .final .btn.light { background:#fff; color:var(--accent-ink); border-color:#fff; position:relative; }
+  .final .btn.ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,0.5); position:relative; }
+
+  footer { padding:38px 0 60px; color:var(--ink-3); font-size:0.88rem; }
+  footer .row { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center; }
+
+  .reveal { opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+  .muted { color:var(--ink-3); }
+  .small { font-size:0.86rem; }
+  svg { display:block; }
+</style>
+</head>
+<body>
+
+<nav class="toc" aria-label="secciones">
+  <div class="row">
+    <div class="brand"><span class="logo">M</span> MediVia</div>
+    <ul class="links" id="nav-links">
+      <li><a href="#reto">El reto</a></li>
+      <li><a href="#ahora">Por qué ahora</a></li>
+      <li><a href="#ia">IA + Telegram</a></li>
+      <li><a href="#tramites">Trámites</a></li>
+      <li><a href="#region">Para tu región</a></li>
+      <li><a href="#piloto">Piloto</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de secciones" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ================================ COVER ================================ -->
+<section class="cover">
+  <div class="container">
+    <span class="support-badge">📄 Documento de apoyo · complementa <b>www.medivia.health</b></span>
+    <h1>Salud digital, donde el <span class="accent-under">sistema no llega.</span></h1>
+    <p class="lead">MediVia es una plataforma de salud con inteligencia artificial que acompaña al ciudadano en su día a día: vigila cada trámite ante su aseguradora de salud, cuida al adulto mayor por Telegram y avisa a la familia antes de que un problema se vuelva urgencia. Este documento explica, para un gobierno regional, <strong>qué gana su territorio</strong> al llevarla a su comunidad.</p>
+
+    <div class="pillars-mini reveal">
+      <div class="pmini">
+        <div class="ic ic-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <b>Promoción y prevención</b>
+        <span>P&amp;P que sale del consultorio y entra al día a día del ciudadano.</span>
+      </div>
+      <div class="pmini">
+        <div class="ic ic-blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6-6.3 4.6L8 14 2 9.4h7.6z"/></svg></div>
+        <b>Buena imagen para el gobierno regional</b>
+        <span>Innovación de bajo costo, alto impacto y fácil de comunicar.</span>
+      </div>
+      <div class="pmini">
+        <div class="ic ic-warn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-9-8.5C1.5 8 4 5 7 5c2 0 3.5 1.5 5 3 1.5-1.5 3-3 5-3 3 0 5.5 3 4 7.5-2 4.15-9 8.5-9 8.5z"/></svg></div>
+        <b>Calidad de vida</b>
+        <span>Dignidad para el adulto mayor y tranquilidad para las familias.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ EL RETO ================================ -->
+<section id="reto" class="alt">
+  <div class="container">
+    <div class="eyebrow reveal">El reto del gobierno regional</div>
+    <h2 class="reveal">La promoción y prevención se queda en el consultorio.</h2>
+    <p class="lead reveal">El gobierno regional tiene el mandato de cuidar la salud de su gente, pero las herramientas actuales solo alcanzan a quien está dentro del centro de salud. Fuera de esas paredes, la realidad es otra.</p>
+    <div class="grid-3" style="margin-top:36px;">
+      <div class="card reveal">
+        <div class="ic-lg ic-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></div>
+        <h3>El adulto mayor, solo</h3>
+        <p>Una población que crece, muchas veces lejos de su familia, olvidando tomas y sin decir cuándo algo anda mal. La P&amp;P no lo acompaña en casa.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic-lg ic-warn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 3v5h5"/></svg></div>
+        <h3>Trámites que se pierden</h3>
+        <p>Autorizaciones sin respuesta, reclamos sin seguimiento. El ciudadano se cansa, abandona el tratamiento y termina en urgencias: el costo más caro para la red pública.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic-lg ic-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></div>
+        <h3>Sin datos del territorio</h3>
+        <p>La DIRESA no sabe cómo está la adherencia ni el bienestar de su población hasta que el problema ya explotó en una cifra de hospitalización.</p>
+      </div>
+    </div>
+
+    <div class="band-head reveal">
+      <h3>El problema, en cifras</h3>
+      <span class="band-pill real">Datos verificables</span>
+    </div>
+    <div class="statband reveal">
+      <div class="stat-tile">
+        <div class="num"><span data-count="50" data-prefix="≈" data-suffix="%">≈50%</span></div>
+        <div class="lbl">de adherencia a los tratamientos crónicos de largo plazo. Es justo el punto que ataca el motor de MediVia.</div>
+        <span class="src">Fuente: OMS</span>
+      </div>
+      <div class="stat-tile">
+        <div class="num">1 de cada 4</div>
+        <div class="lbl">peruanos será mayor de 60 años hacia 2050. Es la población que MediVia acompaña en casa.</div>
+        <span class="src">Fuente: INEI (proyección)</span>
+      </div>
+      <div class="stat-tile">
+        <div class="num"><span data-count="45" data-prefix="+" data-suffix=" mil">+45 mil</span></div>
+        <div class="lbl">quejas por atención en salud en 2024: el trámite atascado sigue siendo el reclamo más común del país.</div>
+        <span class="src">Fuente: SUSALUD, 2024</span>
+      </div>
+      <div class="stat-tile">
+        <div class="num">1 solo chat</div>
+        <div class="lbl">Telegram es el único canal: nada de apps nuevas que aprender. Es donde ya hablan con su familia.</div>
+        <span class="src">Diseño del producto</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== POR QUÉ AHORA ============================== -->
+<section id="ahora">
+  <div class="container">
+    <div class="eyebrow reveal">Por qué ahora</div>
+    <h2 class="reveal">La ventana para actuar es hoy.</h2>
+    <p class="lead reveal">Tres cosas que hace pocos años eran imposibles hoy se juntan. El gobierno regional que actúe primero se lleva la ventaja, y algo que mostrar.</p>
+    <div class="grid-4">
+      <div class="card reveal">
+        <div class="ic-lg ic-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></div>
+        <h3>La IA ya está lista</h3>
+        <p>Modelos de voz e imagen que no existían hace tres años hoy leen una orden médica y entienden la nota de voz de un adulto mayor. La tecnología dejó de ser el obstáculo.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic-lg ic-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>El celular ya llegó</h3>
+        <p>Telegram está hasta en las manos del adulto mayor. No hay que enseñar una app nueva ni comprar dispositivos: la infraestructura ya está instalada.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic-lg ic-warn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg></div>
+        <h3>El envejecimiento no espera</h3>
+        <p>La población mayor crece cada año. Cada año sin actuar es otra generación de pacientes crónicos sin acompañamiento en casa.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic-lg ic-red"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3>El sistema está saturado</h3>
+        <p>Urgencias llenas y trámites represados. La prevención en casa dejó de ser un lujo: es la vía más realista para descongestionar la red pública.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== IA + TELEGRAM ============================== -->
+<section id="ia">
+  <div class="container">
+    <div class="eyebrow reveal">El corazón: IA + Telegram</div>
+    <h2 class="reveal">Sin descargar nada. Todo pasa en el chat que ya usan.</h2>
+    <p class="lead reveal">La población más vulnerable no instala apps. Por eso MediVia vive dentro de Telegram: el adulto mayor recibe recordatorios, responde con un botón, una foto o una nota de voz, y la inteligencia artificial hace el trabajo silencioso de entender y avisar. Al salir de una cita, la foto de la orden llega a quien está a cargo, que elige crear el trámite ahí mismo con IA o completarlo a mano en la app. Reproduzca un caso real:</p>
+
+    <div class="demo-tabs reveal">
+      <button class="demo-tab active" data-scn="orden">📸 Foto de la orden → cita creada</button>
+      <button class="demo-tab" data-scn="adh">💊 Recordatorio + alerta a la familia</button>
+      <button class="demo-tab" data-scn="voz">🎙️ Bienestar por voz con IA</button>
+    </div>
+
+    <div class="chat-wrap reveal">
+      <!-- phone -->
+      <div class="phone">
+        <div class="tg-head">
+          <div class="av">M</div>
+          <div>
+            <div class="nm">MediVia Bot</div>
+            <div class="st">bot · en línea</div>
+          </div>
+        </div>
+        <div class="tg-body" id="tg-body"></div>
+      </div>
+
+      <!-- side: beats (autoplay, no manual controls) -->
+      <div class="chat-side">
+        <ul class="beat-list" id="beat-list"></ul>
+        <div class="outcome" id="outcome"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== TRÁMITES ============================== -->
+<section id="tramites" class="alt">
+  <div class="container">
+    <div class="eyebrow reveal">Diagrama interactivo</div>
+    <h2 class="reveal">Un vigía que no deja ningún trámite atascado sin avisar.</h2>
+    <div class="two" style="margin-top:30px;">
+      <div class="reveal">
+        <span class="panel-tag">Ruta del acceso a la salud</span>
+        <p class="muted">Desde el trámite que el cuidador acaba de crear (por IA en el chat o a mano en la app), cada cita y cada medicamento recorre una fila de etapas ante la aseguradora. MediVia sabe en cuál está, cuánto lleva ahí, y cuándo el silencio ya es demasiado. Cada trámite que no se atasca es un ciudadano atendido. Haga clic en una etapa:</p>
+        <ul class="feat-list">
+          <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Revisa el estado real todos los días, sin que nadie tenga que abrir la app.</li>
+          <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> Si lleva demasiado tiempo detenido, insiste hasta que se mueva.</li>
+          <li><span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span> A los 14 días escala a un mensaje directo por Telegram.</li>
+        </ul>
+      </div>
+      <div class="feat-visual reveal">
+        <div class="machine" id="stage-machine">
+          <div class="stage active" data-i="0"><div class="sn">Etapa 1</div><div class="st">Sin solicitar</div></div>
+          <div class="stage" data-i="1"><div class="sn">Etapa 2</div><div class="st">Autorización pendiente</div></div>
+          <div class="stage" data-i="2"><div class="sn">Etapa 3</div><div class="st">Reclamo abierto</div></div>
+          <div class="stage" data-i="3"><div class="sn">Etapa 4</div><div class="st">Sin agendar</div></div>
+          <div class="stage" data-i="4"><div class="sn">Etapa 5</div><div class="st">¿Asistió?</div></div>
+        </div>
+        <div class="stage-detail" id="stage-detail"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PARA TU REGIÓN ============================== -->
+<section id="region">
+  <div class="container">
+    <div class="eyebrow reveal">Beneficios para tu región</div>
+    <h2 class="reveal">Tres resultados concretos para el gobierno regional.</h2>
+    <p class="lead reveal">MediVia no reemplaza al sistema de salud: lo hace visible y navegable para el ciudadano, y le da a la administración resultados que se pueden mostrar. Haga clic en cada pilar:</p>
+
+    <div class="bpillars reveal">
+      <div class="bp p1 active" data-b="0">
+        <div class="ic-lg ic-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3>Promoción y prevención</h3>
+        <p class="tease">La P&amp;P deja de terminar en la puerta del consultorio y acompaña al ciudadano en casa.</p>
+        <span class="more">Ver detalle ↓</span>
+      </div>
+      <div class="bp p2" data-b="1">
+        <div class="ic-lg ic-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6-6.3 4.6L8 14 2 9.4h7.6z"/></svg></div>
+        <h3>Buena imagen del gobierno regional</h3>
+        <p class="tease">Una historia de innovación y cuidado, comunicable y de bajo costo, para la rendición de cuentas.</p>
+        <span class="more">Ver detalle ↓</span>
+      </div>
+      <div class="bp p3" data-b="2">
+        <div class="ic-lg ic-warn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-9-8.5C1.5 8 4 5 7 5c2 0 3.5 1.5 5 3 1.5-1.5 3-3 5-3 3 0 5.5 3 4 7.5-2 4.15-9 8.5-9 8.5z"/></svg></div>
+        <h3>Calidad de vida</h3>
+        <p class="tease">Dignidad para el adulto mayor y tranquilidad real para las familias del territorio.</p>
+        <span class="more">Ver detalle ↓</span>
+      </div>
+    </div>
+
+    <div class="bp-detail reveal" id="bp-detail"></div>
+  </div>
+</section>
+
+<!-- ============================== PILOTO ============================== -->
+<section id="piloto" class="alt">
+  <div class="container">
+    <div class="eyebrow reveal">Cómo se implementa</div>
+    <h2 class="reveal">Un piloto liviano, sin instalar nada, con resultados medibles.</h2>
+    <p class="lead reveal">MediVia ya está en operación. Un gobierno regional puede arrancar con un grupo focal (adultos mayores o pacientes crónicos) sin gran infraestructura, porque todo corre sobre Telegram.</p>
+    <div class="steps">
+      <div class="step reveal"><div class="num">1</div><b>Convenio y grupo focal</b><span>La DIRESA define la población objetivo: adultos mayores, crónicos (hipertensión, diabetes) o cuidadores.</span></div>
+      <div class="step reveal"><div class="num">2</div><b>Vinculación por chat</b><span>Cada ciudadano se une con un enlace de Telegram. Sin descargar apps, sin crear cuentas complejas.</span></div>
+      <div class="step reveal"><div class="num">3</div><b>Acompañamiento activo</b><span>Recordatorios, bienestar por voz, seguimiento de trámites y alertas a la familia funcionando desde el día uno.</span></div>
+      <div class="step reveal"><div class="num">4</div><b>Resultados que se muestran</b><span>Tablero agregado de adherencia y bienestar del territorio para la rendición de cuentas del gobierno regional.</span></div>
+    </div>
+
+    <div class="band-head reveal">
+      <h3>Impacto proyectado del piloto</h3>
+      <span class="band-pill proj">Proyección ilustrativa</span>
+    </div>
+    <div class="statband three reveal">
+      <div class="stat-tile proj">
+        <div class="num"><span data-count="500">500</span></div>
+        <div class="lbl">ciudadanos acompañados en un piloto inicial de tres meses.</div>
+      </div>
+      <div class="stat-tile proj">
+        <div class="num"><span data-count="20" data-prefix="+" data-suffix=" pts">+20 pts</span></div>
+        <div class="lbl">de mejora esperada en adherencia, de un punto de partida cercano al 50% hacia el 70%.</div>
+      </div>
+      <div class="stat-tile proj">
+        <div class="num">1 de cada 3</div>
+        <div class="lbl">hospitalizaciones por descompensación son evitables con adherencia y detección temprana.</div>
+      </div>
+    </div>
+    <p class="band-foot reveal"><b>Proyección ilustrativa.</b> No es un resultado prometido: es un modelo que se ajusta con la línea base real del territorio antes de cualquier compromiso. Separamos a propósito estas cifras de las verificables de arriba.</p>
+
+    <div class="ask reveal">
+      <div class="ask-main">
+        <span class="panel-tag">La propuesta</span>
+        <h3>Qué pedimos y qué ponemos cada uno.</h3>
+        <p>Un piloto de <strong>3 meses</strong> con un grupo focal que define la DIRESA (entre <strong>300 y 500</strong> adultos mayores o pacientes crónicos), sin costo de infraestructura ni desarrollo para el gobierno regional.</p>
+        <div class="ask-split">
+          <div class="muni">
+            <b>Pone el gobierno regional</b>
+            <span>El convenio, la definición de la población objetivo y un punto de contacto en la DIRESA.</span>
+          </div>
+          <div class="med">
+            <b>Pone MediVia</b>
+            <span>La plataforma operando, la vinculación por chat, el acompañamiento diario y el tablero de resultados.</span>
+          </div>
+        </div>
+      </div>
+      <div class="ask-cta">
+        <div class="ask-step">El siguiente paso</div>
+        <p>Una reunión de 30 minutos con demostración en vivo del producto real y el alcance del piloto para su territorio.</p>
+        <a href="#contacto" class="btn">Agendar la reunión →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CTA ============================== -->
+<section id="contacto">
+  <div class="container">
+    <div class="final reveal">
+      <h2>Que su región sea la que cuida a su gente con inteligencia artificial.</h2>
+      <p>MediVia está listo para pilotos con gobiernos regionales, DIRESA y hogares geriátricos. Agende una demostración en vivo con el producto real y hablemos de un plan para su territorio.</p>
+      <div class="cta" style="justify-content:center;">
+        <a href="mailto:contacto@medivia.health" class="btn light">Agendar una demostración →</a>
+        <a href="https://www.medivia.health" target="_blank" class="btn ghost">Ver el producto ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container row">
+    <div class="brand"><span class="logo">M</span> MediVia</div>
+    <div>Documento de apoyo · el producto completo vive en www.medivia.health</div>
+  </div>
+</footer>
+
+<script>
+  /* =================== Telegram chat player =================== */
+  var SCENARIOS = {
+    orden: {
+      steps: [
+        { bubbles:[{cls:'bot', who:'MediVia Bot', html:'🗓️ Rosa, ¿cómo te fue en la cita con Fisiatría?', btns:[{t:'✓ Sí asistí'}]}],
+          beat:{ b:'Pregunta apenas sale de la cita', s:'El chat no espera a que el paciente recuerde después: pregunta en el momento.' } },
+        { bubbles:[{cls:'user', html:'✓ Sí asistí'},{cls:'bot', who:'MediVia Bot', html:'📸 Qué bien. ¿Puedes mandarme una foto de la orden que te dieron?'}],
+          beat:{ b:'El bot le pide la foto a Rosa', s:'Solo después de confirmar que asistió, el bot pide la orden. Un paso a la vez, sin abrumarla.' } },
+        { bubbles:[{cls:'user', photo:true}],
+          beat:{ b:'Rosa envía la foto de la orden', s:'Sin guardarla ni leerla todavía: MediVia solo la recibe para reenviarla.' } },
+        { bubbles:[{cls:'bot', who:'MediVia Bot → María (hija)', care:true, html:'📎 Rosa salió de su cita. Te reenvío la orden.'},{cls:'bot', photo:true, btns:[{t:'🤖 Crear con IA'},{t:'📱 Abrir la app'}]}],
+          beat:{ b:'La orden llega a quien decide', s:'La hija recibe la foto y elige cómo seguir: que la IA la lea ahí mismo, en el chat, o completarla a mano en la app.' } },
+        { sys:'María elige "Crear con IA": el modelo lee la orden dos veces en paralelo y compara resultados', ai:true,
+          beat:{ b:'Si elige IA, lectura doble automática', s:'Extrae especialidad, aseguradora, médico remitente y fecha límite. Si las dos lecturas no coinciden, corre una tercera y decide por mayoría.' } },
+        { bubbles:[{cls:'bot', who:'MediVia Bot → María (hija)', care:true, html:'✅ Listo. Se creó la cita de control de Rosa con <b>Fisiatría</b>, vence el 30 de agosto. Ya está en la lista de trámites.'}],
+          beat:{ b:'El trámite queda creado, sin salir del chat', s:'Y si María hubiera preferido la app, la misma foto la espera ahí para completarla a mano en el wizard de siempre.' } }
+      ],
+      outcome:'El cuidador decide cómo, pero nunca tiene que perseguir el papel.'
+    },
+    adh: {
+      steps: [
+        { bubbles:[{cls:'bot', who:'MediVia Bot', html:'☀️ Buenos días, Rosa. ¿Ya se tomó el <b>Losartán</b> de las 8:00?', btns:[{t:'✓ Ya me la tomé', g:true},{t:'⏰ Posponer'}]}],
+          beat:{ b:'MediVia recuerda la toma', s:'Un mensaje simple, con botones. Rosa no tiene que escribir nada.' } },
+        { sys:'⏳ Pasan 60 minutos sin respuesta…',
+          beat:{ b:'Rosa no responde', s:'A veces se olvida, a veces no vio el mensaje. MediVia no lo deja pasar.' } },
+        { sys:'MediVia detecta que la toma no fue confirmada', ai:true,
+          beat:{ b:'Se activa el escalamiento', s:'El sistema, solo, decide que hay que avisarle a alguien.' } },
+        { bubbles:[{cls:'bot', who:'MediVia Bot → María (hija)', care:true, html:'⚠️ Tu mamá <b>Rosa</b> no ha confirmado su medicina de la tarde. ¿Puedes llamarla?'}],
+          beat:{ b:'La familia se entera al instante', s:'El aviso llega a la hija por Telegram, esté donde esté.' } },
+        { bubbles:[{cls:'user', html:'Gracias, ya la llamo 💙'}],
+          beat:{ b:'Se cierra el círculo de cuidado', s:'Un olvido cotidiano no se convierte en una complicación.' } }
+      ],
+      outcome:'Un riesgo detectado a tiempo, sin que nadie tuviera que vigilar.'
+    },
+    voz: {
+      steps: [
+        { bubbles:[{cls:'bot', who:'MediVia Bot', html:'🎙️ Don Jorge, cuénteme en una nota de voz: ¿cómo se ha sentido hoy?', btns:[{t:'🎤 Enviar nota de voz'}]}],
+          beat:{ b:'MediVia pregunta por su bienestar', s:'Sin menús ni formularios. Le habla como le hablaría un nieto.' } },
+        { bubbles:[{cls:'user', voice:true}],
+          beat:{ b:'Don Jorge responde con su voz', s:'"Bien, aunque la rodilla me molesta al caminar…" Lo más natural para él.' } },
+        { sys:'La IA transcribe el audio y lo cruza con su historia clínica', ai:true,
+          beat:{ b:'La inteligencia artificial escucha', s:'Convierte la voz en texto y la interpreta con contexto médico.' } },
+        { bubbles:[{cls:'bot', who:'MediVia Bot → hijo', care:true, html:'🟠 <b>Don Jorge</b> reporta dolor articular. Ánimo estable. Vale la pena hacer seguimiento.'}],
+          beat:{ b:'La familia recibe un estado claro', s:'La IA nunca conversa ni decide por el paciente: solo escucha y reporta.' } }
+      ],
+      outcome:'El bienestar del adulto mayor, monitoreado con dignidad y sin invadir su día.'
+    }
+  };
+
+  var curScn = 'orden', curStep = 0, playTimer = null;
+  var tgBody = document.getElementById('tg-body');
+  var beatList = document.getElementById('beat-list');
+  var outcome = document.getElementById('outcome');
+  var STEP_MS = 1700, LOOP_PAUSE_MS = 2600;
+
+  function voiceSvg(){
+    var bars=''; var hs=[8,14,18,11,16,7,13,17,10,15,6,12];
+    for(var i=0;i<hs.length;i++){ bars+='<i style="height:'+hs[i]+'px"></i>'; }
+    return '<div class="voice"><span class="play"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><div class="wave">'+bars+'</div><span style="font-size:0.72rem;font-weight:700;color:#0f3d16">0:14</span></div>';
+  }
+
+  function photoSvg(){
+    return '<div style="display:flex;align-items:center;gap:9px;"><span style="width:34px;height:34px;border-radius:8px;background:#dff3e1;display:grid;place-items:center;color:#0f3d16;flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-5-5L5 19"/></svg></span><span style="font-size:0.78rem;font-weight:700;color:#0f3d16;">orden_medica.jpg</span></div>';
+  }
+
+  function renderBeats(){
+    var steps = SCENARIOS[curScn].steps;
+    beatList.innerHTML = '';
+    steps.forEach(function(st, i){
+      var li = document.createElement('li');
+      li.className = 'beat' + (i===curStep ? ' active' : '');
+      li.innerHTML = '<span class="n">'+(i+1)+'</span><span><b>'+st.beat.b+'</b><span>'+st.beat.s+'</span></span>';
+      beatList.appendChild(li);
+    });
+  }
+
+  function renderChat(){
+    var steps = SCENARIOS[curScn].steps;
+    tgBody.innerHTML = '';
+    for(var i=0; i<=curStep; i++){
+      var st = steps[i];
+      if(st.sys){
+        var d = document.createElement('div');
+        d.className = 'sys' + (st.ai?' ai':'');
+        d.innerHTML = (st.ai?'✨ ':'') + st.sys;
+        tgBody.appendChild(d);
+        requestAnimationFrame(function(el){ return function(){ el.classList.add('show'); }; }(d));
+      }
+      if(st.bubbles){
+        st.bubbles.forEach(function(b){
+          var el = document.createElement('div');
+          el.className = 'bub ' + b.cls;
+          var inner = '';
+          if(b.who){ inner += '<div class="who'+(b.care?' care':'')+'">'+b.who+'</div>'; }
+          if(b.voice){ inner += voiceSvg(); }
+          else if(b.photo){ inner += photoSvg(); }
+          else { inner += (b.html||''); }
+          if(b.btns){ inner += '<div class="bub-btns">'+b.btns.map(function(x){ return '<span class="bub-btn'+(x.g?' g':'')+'">'+x.t+'</span>'; }).join('')+'</div>'; }
+          el.innerHTML = inner;
+          tgBody.appendChild(el);
+          requestAnimationFrame(function(e){ return function(){ e.classList.add('show'); }; }(el));
+        });
+      }
+    }
+    // beats active state
+    Array.prototype.forEach.call(beatList.children, function(li, i){ li.classList.toggle('active', i===curStep); });
+    // outcome only on last
+    var last = steps.length - 1;
+    if(curStep === last){ outcome.style.display='flex'; outcome.innerHTML = '<span>✅</span> '+SCENARIOS[curScn].outcome; }
+    else { outcome.style.display='none'; }
+  }
+
+  function clearAutoplay(){ if(playTimer){ clearTimeout(playTimer); clearInterval(playTimer); playTimer=null; } }
+
+  function startAutoplay(){
+    clearAutoplay();
+    curStep = 0; renderChat();
+    playTimer = setInterval(function(){
+      var last = SCENARIOS[curScn].steps.length-1;
+      if(curStep<last){ curStep++; renderChat(); }
+      else {
+        clearInterval(playTimer);
+        playTimer = setTimeout(startAutoplay, LOOP_PAUSE_MS);
+      }
+    }, STEP_MS);
+  }
+
+  function loadScn(scn){ curScn = scn; curStep = 0; renderBeats(); startAutoplay(); }
+
+  document.querySelectorAll('.demo-tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.demo-tab').forEach(function(x){ x.classList.remove('active'); });
+      t.classList.add('active');
+      loadScn(t.getAttribute('data-scn'));
+    });
+  });
+  loadScn('orden');
+
+  /* =================== stage machine (trámites) =================== */
+  var P1 = { label:'P1 · Desatasca el acceso', bg:'var(--warn-soft)', color:'var(--warn)' };
+  var P2 = { label:'P2 · Previene lapsus de cuidado', bg:'var(--accent-soft)', color:'var(--accent)' };
+  var STAGES = [
+    { t:'Registrada, pero nunca se pidió la autorización', d:'La cita o el medicamento existe, pero el trámite ante la aseguradora ni siquiera empezó. MediVia lo marca desde el primer día: “falta pedir esta autorización”.', w:P1 },
+    { t:'Autorización pedida, sin respuesta', d:'Se radicó la solicitud y la aseguradora no responde. A partir de 7 días MediVia lo muestra como atascado y cuenta los días de silencio.', w:P1 },
+    { t:'Reclamo abierto, sin respuesta', d:'Se escaló con un reclamo (SUSALUD) y sigue sin moverse. MediVia insiste: si a los 14 días no hay respuesta, escala a un mensaje directo por Telegram.', w:P1 },
+    { t:'Autorizado, pero sin agendar o sin reclamar', d:'La aseguradora ya autorizó, pero el paso quedó a medias: falta ponerle fecha a la cita o reclamar el medicamento. MediVia no deja que se pierda ahí.', w:P1 },
+    { t:'¿El paciente asistió?', d:'Tras la cita, MediVia pregunta si asistió. Si no, la reabre como “pendiente de agendar” y avisa al cuidador. El ciclo se cierra de verdad.', w:P2 }
+  ];
+  var machine = document.getElementById('stage-machine'), detail = document.getElementById('stage-detail');
+  function renderStage(i){
+    var s = STAGES[i];
+    detail.innerHTML = '<span class="badge-p" style="background:'+s.w.bg+';color:'+s.w.color+'">'+s.w.label+'</span><h4>'+s.t+'</h4><p>'+s.d+'</p>';
+    machine.querySelectorAll('.stage').forEach(function(el, idx){ el.classList.toggle('active', idx===i); el.classList.toggle('done', idx<i); });
+  }
+  machine.querySelectorAll('.stage').forEach(function(el){ el.addEventListener('click', function(){ renderStage(parseInt(el.getAttribute('data-i'),10)); }); });
+  renderStage(0);
+
+  /* =================== benefits pillars =================== */
+  var BENEFITS = [
+    { c:'#047857', title:'Promoción y prevención que llega a la casa',
+      items:['Mejor adherencia al tratamiento en crónicos (hipertensión, diabetes).',
+             'Detección temprana de deterioro por bienestar de voz, antes de la urgencia.',
+             'Menos hospitalizaciones evitables: el ahorro más grande para la red pública.',
+             'Acompañamiento continuo entre una cita y la siguiente.'] },
+    { c:'#1e50bc', title:'Una historia de innovación y cuidado que se puede mostrar',
+      items:['Narrativa comunicable: “el gobierno regional que cuida a sus mayores con IA”.',
+             'Bajo costo y alto impacto, ideal para rendición de cuentas.',
+             'Tablero agregado del estado de salud del territorio.',
+             'Posiciona al gobierno regional como pionero en salud digital.'] },
+    { c:'#b45309', title:'Calidad de vida real para el ciudadano y su familia',
+      items:['Dignidad para el adulto mayor: acompañamiento sin aprender tecnología.',
+             'Tranquilidad para las familias, estén donde estén.',
+             'Menos sufrimiento administrativo: el trámite deja de perderse.',
+             'Acceso real a la salud para quien no sabe “moverse” en el sistema.'] }
+  ];
+  var bpDetail = document.getElementById('bp-detail');
+  function renderBenefit(i){
+    var b = BENEFITS[i];
+    bpDetail.style.borderLeftColor = b.c;
+    bpDetail.innerHTML = '<h4 style="color:'+b.c+'">'+b.title+'</h4><ul class="items">'
+      + b.items.map(function(x){ return '<li><span class="ck" style="background:'+b.c+'1a;color:'+b.c+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>'+x+'</li>'; }).join('')
+      + '</ul>';
+    document.querySelectorAll('.bp').forEach(function(el, idx){ el.classList.toggle('active', idx===i); });
+  }
+  document.querySelectorAll('.bp').forEach(function(el){ el.addEventListener('click', function(){ renderBenefit(parseInt(el.getAttribute('data-b'),10)); }); });
+  renderBenefit(0);
+
+  /* =================== count up =================== */
+  var counted = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target, end = parseInt(el.getAttribute('data-count'),10);
+      var pre = el.getAttribute('data-prefix')||'', suf = el.getAttribute('data-suffix')||'';
+      var t0 = null, dur = 1000;
+      function step(ts){ if(!t0) t0=ts; var pr = Math.min((ts-t0)/dur,1); el.textContent = pre + Math.round(end*pr) + suf; if(pr<1) requestAnimationFrame(step); }
+      requestAnimationFrame(step); counted.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(function(el){ counted.observe(el); });
+
+  /* =================== mobile nav toggle =================== */
+  var navToggle = document.getElementById('nav-toggle');
+  var navLinks = document.getElementById('nav-links');
+  navToggle.addEventListener('click', function(){
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* =================== reveal + scroll-spy =================== */
+  var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  var sections = ['reto','ahora','ia','tramites','region','piloto'];
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ document.querySelectorAll('nav.toc a').forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id); }); } });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(function(id){ var el=document.getElementById(id); if(el) spy.observe(el); });
+</script>
+</body>
+</html>
