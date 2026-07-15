@@ -173,11 +173,6 @@
   .voice .wave i { width:2.5px; background:var(--tg); border-radius:2px; display:block; }
 
   .chat-side { }
-  .chat-controls { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
-  .ctrl { display:inline-flex; align-items:center; gap:7px; padding:10px 16px; border-radius:999px; border:1px solid var(--border); background:var(--bg); font-weight:700; font-size:0.88rem; cursor:pointer; color:var(--ink); }
-  .ctrl.primary { background:var(--accent-fill); color:#fff; border-color:var(--accent-fill); }
-  .ctrl:disabled { opacity:0.4; cursor:default; }
-  .step-count { font-size:0.82rem; color:var(--ink-3); font-weight:700; margin-left:auto; }
   .beat-list { list-style:none; padding:0; margin:0; display:grid; gap:9px; }
   .beat { display:grid; grid-template-columns:26px 1fr; gap:12px; align-items:start; padding:12px 14px; border:1px solid var(--border-soft); border-left:4px solid var(--border); border-radius:0 12px 12px 0; background:var(--bg); opacity:0.55; transition:all .2s; }
   .beat.active { opacity:1; border-left-color:var(--tg); background:#f4fbfe; box-shadow:var(--shadow-1); }
@@ -412,14 +407,8 @@
         <div class="tg-body" id="tg-body"></div>
       </div>
 
-      <!-- side: controls + beats -->
+      <!-- side: beats (autoplay, no manual controls) -->
       <div class="chat-side">
-        <div class="chat-controls">
-          <button class="ctrl" id="btn-prev">◀ Anterior</button>
-          <button class="ctrl primary" id="btn-next">Siguiente ▶</button>
-          <button class="ctrl" id="btn-play">▶ Reproducir</button>
-          <span class="step-count" id="step-count"></span>
-        </div>
         <ul class="beat-list" id="beat-list"></ul>
         <div class="outcome" id="outcome"></div>
       </div>
@@ -617,12 +606,11 @@
     }
   };
 
-  var curScn = 'adh', curStep = 0, playTimer = null;
+  var curScn = 'orden', curStep = 0, playTimer = null;
   var tgBody = document.getElementById('tg-body');
   var beatList = document.getElementById('beat-list');
   var outcome = document.getElementById('outcome');
-  var stepCount = document.getElementById('step-count');
-  var btnPrev = document.getElementById('btn-prev'), btnNext = document.getElementById('btn-next'), btnPlay = document.getElementById('btn-play');
+  var STEP_MS = 1700, LOOP_PAUSE_MS = 2600;
 
   function voiceSvg(){
     var bars=''; var hs=[8,14,18,11,16,7,13,17,10,15,6,12];
@@ -641,7 +629,6 @@
       var li = document.createElement('li');
       li.className = 'beat' + (i===curStep ? ' active' : '');
       li.innerHTML = '<span class="n">'+(i+1)+'</span><span><b>'+st.beat.b+'</b><span>'+st.beat.s+'</span></span>';
-      li.addEventListener('click', function(){ stopPlay(); goTo(i); });
       beatList.appendChild(li);
     });
   }
@@ -680,31 +667,25 @@
     var last = steps.length - 1;
     if(curStep === last){ outcome.style.display='flex'; outcome.innerHTML = '<span>✅</span> '+SCENARIOS[curScn].outcome; }
     else { outcome.style.display='none'; }
-    stepCount.textContent = 'Paso '+(curStep+1)+' de '+steps.length;
-    btnPrev.disabled = curStep===0;
-    btnNext.disabled = curStep===last;
   }
 
-  function goTo(i){ curStep = i; renderChat(); }
-  function next(){ var last = SCENARIOS[curScn].steps.length-1; if(curStep<last){ curStep++; renderChat(); } }
-  function prev(){ if(curStep>0){ curStep--; renderChat(); } }
-  function loadScn(scn){ stopPlay(); curScn = scn; curStep = 0; renderBeats(); renderChat(); }
+  function clearAutoplay(){ if(playTimer){ clearTimeout(playTimer); clearInterval(playTimer); playTimer=null; } }
 
-  function play(){
-    stopPlay();
+  function startAutoplay(){
+    clearAutoplay();
     curStep = 0; renderChat();
-    btnPlay.textContent = '⏸ Pausar';
     playTimer = setInterval(function(){
       var last = SCENARIOS[curScn].steps.length-1;
       if(curStep<last){ curStep++; renderChat(); }
-      else { stopPlay(); }
-    }, 1500);
+      else {
+        clearInterval(playTimer);
+        playTimer = setTimeout(startAutoplay, LOOP_PAUSE_MS);
+      }
+    }, STEP_MS);
   }
-  function stopPlay(){ if(playTimer){ clearInterval(playTimer); playTimer=null; } btnPlay.textContent = '▶ Reproducir'; }
 
-  btnNext.addEventListener('click', function(){ stopPlay(); next(); });
-  btnPrev.addEventListener('click', function(){ stopPlay(); prev(); });
-  btnPlay.addEventListener('click', function(){ if(playTimer){ stopPlay(); } else { play(); } });
+  function loadScn(scn){ curScn = scn; curStep = 0; renderBeats(); startAutoplay(); }
+
   document.querySelectorAll('.demo-tab').forEach(function(t){
     t.addEventListener('click', function(){
       document.querySelectorAll('.demo-tab').forEach(function(x){ x.classList.remove('active'); });
