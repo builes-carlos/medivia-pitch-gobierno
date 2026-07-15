@@ -32,6 +32,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  html, body { max-width: 100%; overflow-x: hidden; }
   body {
     margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
     font-size: 17px; line-height: 1.65; color: var(--ink); background: var(--bg);
@@ -61,13 +62,33 @@
   nav.toc ul { list-style:none; padding:0; margin:0 0 0 auto; display:flex; gap:4px; flex-wrap:wrap; }
   nav.toc ul a { color:var(--ink-3); font-size:0.9rem; font-weight:600; padding:7px 12px; border-radius:999px; transition:color .15s, background .15s; }
   nav.toc ul a:hover, nav.toc ul a.active { color:var(--accent); background:var(--accent-soft); }
-  .nav-cta { margin-left:8px; background:var(--accent-fill); color:#fff !important; padding:9px 16px !important; border-radius:999px; box-shadow:0 4px 12px rgba(30,80,188,0.30); }
-  @media (max-width: 980px) { nav.toc ul.links { display:none; } }
+  .nav-cta { margin-left:8px; background:var(--accent-fill); color:#fff !important; font-size:0.85rem; font-weight:700; padding:9px 16px !important; border-radius:999px; box-shadow:0 4px 12px rgba(30,80,188,0.30); white-space:nowrap; flex-shrink:0; }
+  .nav-cta .short { display:none; }
+  .nav-toggle { display:none; align-items:center; justify-content:center; width:38px; height:38px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--ink); cursor:pointer; flex-shrink:0; padding:0; }
+  .nav-toggle:hover { border-color:var(--accent); color:var(--accent); }
+  @media (max-width: 980px) {
+    nav.toc ul.links {
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:2px; background:var(--bg);
+      border-bottom:1px solid var(--border-soft); box-shadow:var(--shadow-1);
+      padding:10px 16px 16px; margin:0;
+    }
+    nav.toc ul.links.open { display:flex; }
+    nav.toc ul.links li { width:100%; }
+    nav.toc ul.links a { display:block; padding:12px 14px; }
+    .nav-toggle { display:inline-flex; }
+  }
+  @media (max-width: 420px) {
+    .nav-cta .full { display:none; }
+    .nav-cta .short { display:inline; }
+    nav.toc .row { padding:13px 16px; gap:10px; }
+    .brand { font-size:0.98rem; }
+  }
 
   /* cover */
   .cover { padding: clamp(48px, 7vw, 92px) 0 clamp(36px, 5vw, 64px); position:relative; overflow:hidden; }
   .cover::before { content:""; position:absolute; inset:-25% -10% auto -10%; height:640px; z-index:-1; background: radial-gradient(55% 60% at 18% 8%, rgba(37,99,235,0.10), transparent 70%), radial-gradient(50% 50% at 92% 0%, rgba(16,185,129,0.10), transparent 70%); }
-  .support-badge { display:inline-flex; align-items:center; gap:10px; font-size:0.82rem; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); border:1px solid #cfe0fd; padding:7px 15px; border-radius:999px; margin-bottom:22px; }
+  .support-badge { display:inline-flex; flex-wrap:wrap; max-width:100%; align-items:center; gap:6px 10px; font-size:0.82rem; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); border:1px solid #cfe0fd; padding:7px 15px; border-radius:999px; margin-bottom:22px; }
   .support-badge b { color:var(--accent); }
   .cover h1 { max-width: 18ch; }
   .cover .lead { margin-top:20px; }
@@ -254,7 +275,7 @@
 <nav class="toc" aria-label="secciones">
   <div class="row">
     <div class="brand"><span class="logo">M</span> MediVia</div>
-    <ul class="links">
+    <ul class="links" id="nav-links">
       <li><a href="#reto">El reto</a></li>
       <li><a href="#ahora">Por qué ahora</a></li>
       <li><a href="#ia">IA + Telegram</a></li>
@@ -262,7 +283,10 @@
       <li><a href="#municipio">Para tu municipio</a></li>
       <li><a href="#piloto">Piloto</a></li>
     </ul>
-    <a href="https://www.medivia.health" target="_blank" class="nav-cta">medivia.health ↗</a>
+    <a href="https://www.medivia.health" target="_blank" class="nav-cta"><span class="full">medivia.health ↗</span><span class="short">↗</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de secciones" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -752,6 +776,20 @@
     });
   }, { threshold: 0.6 });
   document.querySelectorAll('[data-count]').forEach(function(el){ counted.observe(el); });
+
+  /* =================== mobile nav toggle =================== */
+  var navToggle = document.getElementById('nav-toggle');
+  var navLinks = document.getElementById('nav-links');
+  navToggle.addEventListener('click', function(){
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 
   /* =================== reveal + scroll-spy =================== */
   var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
