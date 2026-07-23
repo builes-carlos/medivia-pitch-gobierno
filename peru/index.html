@@ -136,6 +136,13 @@
   .cost-side { background:var(--bg); padding:28px; display:flex; flex-direction:column; justify-content:center; gap:20px; }
   .cost-item b { display:block; font-size:1.5rem; font-weight:900; letter-spacing:-0.02em; color:var(--warn); line-height:1.1; }
   .cost-item span { display:block; margin-top:5px; font-size:0.88rem; color:var(--ink-3); line-height:1.45; }
+  .calcstrip { display:flex; align-items:center; flex-wrap:wrap; gap:10px 13px; margin-top:16px; padding:16px 22px; background:var(--accent-soft); border:1px solid #cfe0fd; border-radius:12px; }
+  .calcstrip .lab { width:100%; font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-3); }
+  .calcstrip .cs { font-size:0.95rem; font-weight:700; color:var(--accent-ink); }
+  .calcstrip .op { font-size:1.05rem; font-weight:900; color:var(--accent); opacity:0.5; }
+  .calcstrip .res { font-size:1.12rem; font-weight:900; color:var(--accent); letter-spacing:-0.02em; }
+  .calcnote { margin:14px 0 0; font-size:0.95rem; color:var(--ink-2); line-height:1.55; }
+  .calcnote b { color:var(--accent-ink); }
 
   /* ---------- why-now grid ---------- */
   .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:34px; }
@@ -408,17 +415,28 @@
     </div>
     <div class="costblock reveal">
       <div class="cost-main">
-        <div class="cost-num">S/ 612 <em>millones</em></div>
-        <p class="cost-lbl">gastó el Estado peruano en <b>un solo año</b> financiando terapias de hemodiálisis para 19.135 pacientes. Es el <b>3,35% de todo el presupuesto de salud</b> del país destinado a pagar el desenlace de enfermedades crónicas que no se controlaron a tiempo.</p>
-        <span class="cost-src">Fuente: Sociedad Peruana de Nefrología y MEF (2020), citado en Rev. Soc. Peru. Med. Interna, 2024</span>
+        <div class="cost-num">S/ 35.000 <em>millones</em></div>
+        <p class="cost-lbl">es lo que el Perú <b>puede ahorrar en 15 años</b> actuando sobre sus enfermedades crónicas. Dicho al revés: es lo que cuesta no actuar. Lo calcularon la OPS y el PNUD junto al Estado peruano, junto a <b>183.000 vidas</b> y 2,5 millones de años de vida sana.</p>
+        <span class="cost-src">Fuente: OPS, PNUD y UNIATF · «Prevención y control de las ENT y los trastornos mentales en el Perú: el caso a favor de la inversión», 2021</span>
       </div>
       <div class="cost-side">
-        <div class="cost-item"><b>S/ 39.000</b><span>por paciente, cada año, de por vida: lo que cuesta un solo ciudadano que llegó a diálisis.</span></div>
-        <div class="cost-item"><b>19.135</b><span>personas en hemodiálisis. Cada una fue antes un paciente crónico sin acompañamiento.</span></div>
-        <div class="cost-item"><b>1.ª causa</b><span>de enfermedad renal crónica y diálisis en el Perú: la diabetes.</span></div>
+        <div class="cost-item"><b>2,2 soles</b><span>de retorno por cada sol invertido en prevención, según ese mismo estudio.</span></div>
+        <div class="cost-item"><b>S/ 612 millones</b><span>ya ejecutados en un solo año, solo en hemodiálisis, para 19.135 pacientes.</span></div>
+        <div class="cost-item"><b>S/ 39.000</b><span>por paciente al año, de por vida, cuando la enfermedad ya llegó a diálisis.</span></div>
       </div>
     </div>
-    <p class="band-foot reveal">Cada paciente en diálisis pasó años siendo un paciente crónico que nadie vigiló, <b>cuando acompañarlo todavía era barato</b>. Ahí es donde entra MediVia: en los años baratos.</p>
+    <div class="calcstrip reveal">
+      <span class="lab">La cuenta, a la vista</span>
+      <span class="cs">S/ 35.000 millones</span>
+      <span class="op">÷</span>
+      <span class="cs">15 años</span>
+      <span class="op">÷</span>
+      <span class="cs">34,2 millones de habitantes</span>
+      <span class="op">=</span>
+      <span class="res">S/ 68 por habitante, al año</span>
+    </div>
+    <p class="calcnote reveal">Una región de <b>un millón de habitantes</b> carga entonces cerca de <b>S/ 68 millones al año</b> en costo evitable por enfermedad crónica. Recuperar apenas el <b>1%</b> de esa cifra financia un programa de acompañamiento para todo el territorio.</p>
+    <p class="band-foot reveal">El paquete que calculó la OPS incluye políticas de tabaco, sal y alcohol, así que MediVia no reclama todo ese ahorro. Trabaja sobre la parte clínica: adherencia y detección temprana, <b>los años en que acompañar a un paciente todavía es barato</b>.</p>
   </div>
 </section>
 
