@@ -124,6 +124,19 @@
   .band-foot { font-size:0.82rem; color:var(--ink-3); margin-top:14px; }
   .band-foot b { color:var(--warn); }
 
+  /* ---------- cost of inaction ---------- */
+  .costblock { display:grid; grid-template-columns:1.15fr 1fr; margin-top:22px; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-2); }
+  @media (max-width: 820px) { .costblock { grid-template-columns:1fr; } }
+  .cost-main { background:linear-gradient(150deg,#0a1224,#16294f 62%,#1c3566); color:#fff; padding:32px 34px; }
+  .cost-num { font-size:clamp(2.6rem,6vw,4rem); font-weight:900; letter-spacing:-0.04em; line-height:1; color:#fbbf24; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .cost-num em { font-style:normal; font-size:clamp(1.1rem,2vw,1.5rem); font-weight:800; letter-spacing:-0.01em; color:#fde68a; }
+  .cost-lbl { margin:16px 0 0; color:rgba(255,255,255,0.88); font-size:1rem; line-height:1.55; }
+  .cost-lbl b { color:#fff; }
+  .cost-src { display:block; margin-top:16px; font-size:0.72rem; font-weight:700; color:rgba(255,255,255,0.55); letter-spacing:0.02em; }
+  .cost-side { background:var(--bg); padding:28px; display:flex; flex-direction:column; justify-content:center; gap:20px; }
+  .cost-item b { display:block; font-size:1.5rem; font-weight:900; letter-spacing:-0.02em; color:var(--warn); line-height:1.1; }
+  .cost-item span { display:block; margin-top:5px; font-size:0.88rem; color:var(--ink-3); line-height:1.45; }
+
   /* ---------- why-now grid ---------- */
   .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:34px; }
   @media (max-width: 900px) { .grid-4 { grid-template-columns:1fr 1fr; } }
@@ -388,7 +401,24 @@
         <span class="src">Fuente: estudio PLOS One · 39 hospitales públicos</span>
       </div>
     </div>
-    <p class="band-foot reveal">Son costos <b>ya verificables</b>, no proyecciones: el desenlace caro de una enfermedad crónica que nadie acompañó a tiempo. Adherencia y detección temprana en casa son justo la palanca que los reduce.</p>
+    <p class="band-foot reveal">Ninguna de estas cifras es una proyección: es el desenlace clínico de una enfermedad crónica que avanzó sin vigilancia. Y ese desenlace tiene <b>un precio que el Estado ya está pagando</b>.</p>
+    <div class="band-head reveal">
+      <h3>Cuánto le cuesta al Estado la inacción</h3>
+      <span class="band-pill real">Datos verificables</span>
+    </div>
+    <div class="costblock reveal">
+      <div class="cost-main">
+        <div class="cost-num">S/ 612 <em>millones</em></div>
+        <p class="cost-lbl">gastó el Estado peruano en <b>un solo año</b> financiando terapias de hemodiálisis para 19.135 pacientes. Es el <b>3,35% de todo el presupuesto de salud</b> del país destinado a pagar el desenlace de enfermedades crónicas que no se controlaron a tiempo.</p>
+        <span class="cost-src">Fuente: Sociedad Peruana de Nefrología y MEF (2020), citado en Rev. Soc. Peru. Med. Interna, 2024</span>
+      </div>
+      <div class="cost-side">
+        <div class="cost-item"><b>S/ 39.000</b><span>por paciente, cada año, de por vida: lo que cuesta un solo ciudadano que llegó a diálisis.</span></div>
+        <div class="cost-item"><b>19.135</b><span>personas en hemodiálisis. Cada una fue antes un paciente crónico sin acompañamiento.</span></div>
+        <div class="cost-item"><b>1.ª causa</b><span>de enfermedad renal crónica y diálisis en el Perú: la diabetes.</span></div>
+      </div>
+    </div>
+    <p class="band-foot reveal">Cada paciente en diálisis pasó años siendo un paciente crónico que nadie vigiló, <b>cuando acompañarlo todavía era barato</b>. Ahí es donde entra MediVia: en los años baratos.</p>
   </div>
 </section>
 
