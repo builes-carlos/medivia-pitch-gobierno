@@ -136,13 +136,18 @@
   .cost-side { background:var(--bg); padding:28px; display:flex; flex-direction:column; justify-content:center; gap:20px; }
   .cost-item b { display:block; font-size:1.5rem; font-weight:900; letter-spacing:-0.02em; color:var(--warn); line-height:1.1; }
   .cost-item span { display:block; margin-top:5px; font-size:0.88rem; color:var(--ink-3); line-height:1.45; }
-  .calcstrip { display:flex; align-items:center; flex-wrap:wrap; gap:10px 13px; margin-top:16px; padding:16px 22px; background:var(--accent-soft); border:1px solid #cfe0fd; border-radius:12px; }
-  .calcstrip .lab { width:100%; font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-3); }
-  .calcstrip .cs { font-size:0.95rem; font-weight:700; color:var(--accent-ink); }
-  .calcstrip .op { font-size:1.05rem; font-weight:900; color:var(--accent); opacity:0.5; }
-  .calcstrip .res { font-size:1.12rem; font-weight:900; color:var(--accent); letter-spacing:-0.02em; }
   .calcnote { margin:14px 0 0; font-size:0.95rem; color:var(--ink-2); line-height:1.55; }
   .calcnote b { color:var(--accent-ink); }
+  .terr-wrap { overflow-x:auto; margin-top:20px; }
+  .terr { width:100%; border-collapse:collapse; font-size:0.95rem; min-width:340px; }
+  .terr caption { text-align:left; font-size:0.72rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); padding-bottom:12px; }
+  .terr th { text-align:left; font-size:0.72rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); padding:0 0 10px; border-bottom:1px solid var(--border); }
+  .terr th:last-child, .terr td:last-child { text-align:right; }
+  .terr td { padding:13px 0; border-bottom:1px solid var(--border-soft); color:var(--ink-2); font-weight:600; }
+  .terr td:last-child { font-weight:900; color:var(--accent); letter-spacing:-0.01em; }
+  .terr tr:last-child td { border-bottom:none; }
+  .budgetline { margin-top:20px; padding:18px 22px; background:var(--warn-soft); border:1px solid #e0c48a; border-left:4px solid var(--warn); border-radius:0 12px 12px 0; font-size:1.02rem; font-weight:700; color:#7c3d09; line-height:1.5; }
+  .budgetline span { display:block; margin-top:6px; font-size:0.86rem; font-weight:600; color:#8a5a22; }
 
   /* ---------- why-now grid ---------- */
   .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:34px; }
@@ -362,81 +367,88 @@
     </div>
     <div class="statband reveal">
       <div class="stat-tile">
+        <div class="num">5,5 <span style="font-size:0.5em;font-weight:800;">millones</span></div>
+        <div class="lbl">de peruanos viven con hipertensión arterial. Uno de cada cinco adultos.</div>
+        <span class="src">Fuente: ENDES 2022</span>
+      </div>
+      <div class="stat-tile">
+        <div class="num">2,8 <span style="font-size:0.5em;font-weight:800;">millones</span></div>
+        <div class="lbl">viven con diabetes, y cerca de la mitad todavía no lo sabe.</div>
+        <span class="src">Fuente: MINSA</span>
+      </div>
+      <div class="stat-tile">
+        <div class="num">5,1 <span style="font-size:0.5em;font-weight:800;">millones</span></div>
+        <div class="lbl">tienen más de 60 años. Es el grupo que más crece del país.</div>
+        <span class="src">Fuente: Censo 2025, INEI</span>
+      </div>
+      <div class="stat-tile">
         <div class="num"><span data-count="50" data-prefix="≈" data-suffix="%">≈50%</span></div>
         <div class="lbl">de adherencia a los tratamientos crónicos de largo plazo. Es justo el punto que ataca el motor de MediVia.</div>
         <span class="src">Fuente: OMS</span>
       </div>
-      <div class="stat-tile">
-        <div class="num">1 de cada 4</div>
-        <div class="lbl">peruanos será mayor de 60 años hacia 2050. Es la población que MediVia acompaña en casa.</div>
-        <span class="src">Fuente: INEI (proyección)</span>
-      </div>
-      <div class="stat-tile">
-        <div class="num"><span data-count="45" data-prefix="+" data-suffix=" mil">+45 mil</span></div>
-        <div class="lbl">quejas por atención en salud en 2024: el trámite atascado sigue siendo el reclamo más común del país.</div>
-        <span class="src">Fuente: SUSALUD, 2024</span>
-      </div>
-      <div class="stat-tile">
-        <div class="num">1 solo chat</div>
-        <div class="lbl">Telegram es el único canal: nada de apps nuevas que aprender. Es donde ya hablan con su familia.</div>
-        <span class="src">Diseño del producto</span>
-      </div>
     </div>
+    <p class="band-foot reveal">Los grupos se superponen, pero en conjunto son cerca de <b>7 millones de peruanos</b>, uno de cada cinco. Las enfermedades crónicas no transmisibles ya son el 58,5% de la carga de enfermedad del país.</p>
     <div class="band-head reveal">
-      <h3>El precio de no prevenir a tiempo</h3>
+      <h3>Lo que pasa cuando nadie acompaña</h3>
       <span class="band-pill real">Datos verificables</span>
     </div>
     <div class="statband reveal">
       <div class="stat-tile">
-        <div class="num"><span data-count="8" data-suffix=" mil">8 mil</span></div>
-        <div class="lbl">amputaciones al año por diabetes: un peruano pierde un pie cada 1 hora y 10 minutos. El pie diabético es 1 de cada 5 hospitalizaciones por diabetes, y casi todas se evitan con detección y control a tiempo.</div>
-        <span class="src">Fuente: MINSA · estudio PLOS One (39 hospitales)</span>
+        <div class="num">36.500</div>
+        <div class="lbl">infartos al año, más de 100 por día. El 30% muere antes de llegar al hospital.</div>
+        <span class="src">Fuente: MINSA, 2025</span>
       </div>
       <div class="stat-tile">
-        <div class="num">58,5%</div>
-        <div class="lbl">de la carga de enfermedad del país son crónicas no transmisibles: la principal causa de discapacidad y muerte prematura en el Perú.</div>
-        <span class="src">Fuente: INS · OBSERVATE Perú</span>
+        <div class="num">19.135</div>
+        <div class="lbl">personas en hemodiálisis. Cada una fue antes un paciente crónico sin acompañamiento.</div>
+        <span class="src">Fuente: Soc. Peruana de Nefrología y MEF</span>
       </div>
       <div class="stat-tile">
-        <div class="num">S/ 3.500</div>
-        <div class="lbl">por un solo día de cama UCI que paga el Estado (clínicas nivel II–III). Cada descompensación evitable que llega a cuidados intensivos es el gasto más caro de la red pública.</div>
-        <span class="src">Fuente: SIS · tarifa de intercambio prestacional</span>
+        <div class="num">12.835</div>
+        <div class="lbl">accidentes cerebrovasculares al año, concentrados en mayores de 65.</div>
+        <span class="src">Fuente: Rev. Peru. Med. Exp. Salud Publica</span>
       </div>
       <div class="stat-tile">
-        <div class="num"><span data-count="88" data-suffix="%">88%</span></div>
-        <div class="lbl">de los pacientes diabéticos hospitalizados llegan con la enfermedad mal controlada. Es exactamente la brecha de adherencia que ataca MediVia.</div>
-        <span class="src">Fuente: estudio PLOS One · 39 hospitales públicos</span>
+        <div class="num">8.000</div>
+        <div class="lbl">amputaciones al año por diabetes: un pie perdido cada 1 hora y 10 minutos.</div>
+        <span class="src">Fuente: MINSA</span>
       </div>
     </div>
-    <p class="band-foot reveal">Ninguna de estas cifras es una proyección: es el desenlace clínico de una enfermedad crónica que avanzó sin vigilancia. Y ese desenlace tiene <b>un precio que el Estado ya está pagando</b>.</p>
+    <p class="band-foot reveal">El 88% de los pacientes diabéticos que terminan hospitalizados llegan con la enfermedad mal controlada. <b>No es mala suerte: es la ausencia de alguien que mire todos los días.</b></p>
     <div class="band-head reveal">
       <h3>Cuánto le cuesta al Estado la inacción</h3>
       <span class="band-pill real">Datos verificables</span>
     </div>
     <div class="costblock reveal">
       <div class="cost-main">
-        <div class="cost-num">S/ 35.000 <em>millones</em></div>
-        <p class="cost-lbl">es lo que el Perú <b>puede ahorrar en 15 años</b> actuando sobre sus enfermedades crónicas. Dicho al revés: es lo que cuesta no actuar. Lo calcularon la OPS y el PNUD junto al Estado peruano, junto a <b>183.000 vidas</b> y 2,5 millones de años de vida sana.</p>
+        <div class="cost-num">US$ 600 <em>millones</em></div>
+        <p class="cost-lbl">es lo que le cuesta al Perú, <b>cada año</b>, no actuar sobre sus enfermedades crónicas. No es una estimación de MediVia: lo calcularon la OPS y el PNUD junto al Estado peruano.</p>
         <span class="cost-src">Fuente: OPS, PNUD y UNIATF · «Prevención y control de las ENT y los trastornos mentales en el Perú: el caso a favor de la inversión», 2021</span>
       </div>
       <div class="cost-side">
-        <div class="cost-item"><b>2,2 soles</b><span>de retorno por cada sol invertido en prevención, según ese mismo estudio.</span></div>
-        <div class="cost-item"><b>S/ 612 millones</b><span>ya ejecutados en un solo año, solo en hemodiálisis, para 19.135 pacientes.</span></div>
-        <div class="cost-item"><b>S/ 39.000</b><span>por paciente al año, de por vida, cuando la enfermedad ya llegó a diálisis.</span></div>
+        <div class="cost-item"><b>US$ 175 millones</b><span>al año, solo en hemodiálisis.</span></div>
+        <div class="cost-item"><b>US$ 115 millones</b><span>al año, solo en infartos que llegan al hospital.</span></div>
+        <div class="cost-item"><b>US$ 10.000</b><span>por paciente al año, de por vida, una vez que llegó a diálisis.</span></div>
       </div>
     </div>
-    <div class="calcstrip reveal">
-      <span class="lab">La cuenta, a la vista</span>
-      <span class="cs">S/ 35.000 millones</span>
-      <span class="op">÷</span>
-      <span class="cs">15 años</span>
-      <span class="op">÷</span>
-      <span class="cs">34,2 millones de habitantes</span>
-      <span class="op">=</span>
-      <span class="res">S/ 68 por habitante, al año</span>
+    <div class="terr-wrap reveal">
+      <table class="terr">
+        <caption>Qué significa para su territorio</caption>
+        <thead>
+          <tr><th>Población</th><th>Costo evitable al año</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>100.000 habitantes</td><td>US$ 1,76 millones</td></tr>
+          <tr><td>250.000 habitantes</td><td>US$ 4,4 millones</td></tr>
+          <tr><td>500.000 habitantes</td><td>US$ 8,8 millones</td></tr>
+          <tr><td>1.000.000 habitantes</td><td>US$ 17,6 millones</td></tr>
+          <tr><td>2.000.000 habitantes</td><td>US$ 35,1 millones</td></tr>
+        </tbody>
+      </table>
     </div>
-    <p class="calcnote reveal">Una región de <b>un millón de habitantes</b> carga entonces cerca de <b>S/ 68 millones al año</b> en costo evitable por enfermedad crónica. Recuperar apenas el <b>1%</b> de esa cifra financia un programa de acompañamiento para todo el territorio.</p>
-    <p class="band-foot reveal">El paquete que calculó la OPS incluye políticas de tabaco, sal y alcohol, así que MediVia no reclama todo ese ahorro. Trabaja sobre la parte clínica: adherencia y detección temprana, <b>los años en que acompañar a un paciente todavía es barato</b>.</p>
+    <p class="budgetline reveal">Más del 10% de todo el presupuesto de salud se gasta en desenlaces que se pudieron evitar. Uno de cada nueve soles.
+      <span>Cálculo sobre el presupuesto público de salud del Perú y la cifra de costo evitable de la OPS.</span></p>
+    <p class="band-foot reveal">Dos desenlaces solos, diálisis e infartos, ya suman US$ 290 millones: casi la mitad del total, sin contar ACV, amputaciones ni ceguera. <b>La cifra de la OPS no es exagerada, es conservadora.</b></p>
   </div>
 </section>
 
